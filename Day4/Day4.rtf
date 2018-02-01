@@ -1,0 +1,504 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red255\green255\blue255;\red170\green13\blue145;
+\red0\green0\blue0;\red196\green26\blue22;\red28\green0\blue207;\red46\green13\blue110;\red63\green110\blue116;
+\red92\green38\blue153;\red38\green71\blue75;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c45600\c0;\csgray\c100000;\csgenericrgb\c66500\c5200\c56900;
+\csgenericrgb\c0\c0\c0;\csgenericrgb\c77000\c10200\c8600;\csgenericrgb\c11000\c0\c81000;\csgenericrgb\c18100\c5200\c43100;\csgenericrgb\c24700\c43100\c45600;
+\csgenericrgb\c35900\c14900\c60100;\csgenericrgb\c14900\c27800\c29400;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab543
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \cb3 //: Playground - noun: a place where people can play
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 import\cf5  UIKit
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 var\cf5  str = \cf6 "Hello, playground"
+\f1\fs24 \cf0 \
+\
+\
+
+\f0\fs22 \cf2 //sorted closure
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 var\cf5  months = [\cf7 4\cf5 ,\cf7 3\cf5 ,\cf7 1\cf5 ,\cf7 6\cf5 ,\cf7 5\cf5 ,\cf7 2\cf5 ]
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf9 months\cf5 .\cf8 sorted\cf5 ())
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 func\cf5  reverse(\cf4 _\cf5  s1:\cf10 Int\cf5 ,\cf4 _\cf5  s2:\cf10 Int\cf5 )->\cf10 Bool\cf5 \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 return\cf5  s1 > s2\}
+\f1\fs24 \cf0 \
+\
+\
+\
+
+\f0\fs22 \cf4 var\cf5  reversedMonths = \cf9 months\cf5 .\cf8 sorted\cf5 (by:\cf11 reverse\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "reversed Months"\cf5 ,\cf9 reversedMonths\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 func\cf5  increasing(\cf4 _\cf5  s1:\cf10 Int\cf5 ,\cf4 _\cf5  s2:\cf10 Int\cf5 )-> \cf10 Bool\cf5 \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 return\cf5  s1 < s2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 var\cf5  increasingMonths = \cf9 months\cf5 .\cf8 sorted\cf5 (by: \cf11 increasing\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Increasing months:"\cf5 ,\cf9 increasingMonths\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 var\cf5  reverseClosure = \cf9 months\cf5 .\cf8 sorted\cf5 (by: \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     (s1:\cf10 Int\cf5 ,s2:\cf10 Int\cf5 )-> \cf10 Bool\cf5  \cf4 in
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 return\cf5  s1>s2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5 \})
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "reverseClosure"\cf5 ,\cf9 reverseClosure\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 // inferring paramater types from context
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 var\cf5  inferTypes = \cf9 months\cf5 .\cf8 sorted\cf5 (by:
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5 \{(s1,s2) \cf4 in\cf5   s1<s2\})  \cf2 //implicit return
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Infer type"\cf5 ,\cf9 inferTypes\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //shorthand argument names
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "shorthand argument:"\cf5 ,\cf9 months\cf5 .\cf8 sorted\cf5 (by:\{$0<$1\}))
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 // shotthandf argument names
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Shorthand argument:"\cf5 ,\cf9 months\cf5 .\cf8 sorted\cf5 (by:<))
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 var\cf5  three=[\cf7 1\cf5 ,\cf7 3\cf5 ,\cf7 4\cf5 ,\cf7 5\cf5 ,\cf7 6\cf5 ,\cf7 8\cf5 ,\cf7 9\cf5 ,\cf7 12\cf5 ,\cf7 15\cf5 ]
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Three:"\cf5 ,\cf9 three\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 var\cf5  modThree = \cf9 three\cf5 .\cf8 filter\cf5 (\{$0%\cf7 3\cf5  == \cf7 0\cf5 \})
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "modThree:"\cf5 ,\cf9 modThree\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 var\cf5  even = \cf9 three\cf5 .\cf8 filter\cf5 (\{$0%\cf7 2\cf5  == \cf7 0\cf5 \})
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "even numbers:"\cf5 ,\cf9 even\cf5 )    \cf2 //to print even numbers from array three
+\f1\fs24 \cf0 \
+\
+\
+
+\f0\fs22 \cf2 //nested functions closure
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 func\cf5  makeIncrementer(forIncrement amount:\cf10 Int\cf5 )->() ->\cf10 Int\cf5 \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  runningTotal=\cf7 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 func\cf5  incrementer()->\cf10 Int\cf5 \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5         runningTotal += amount
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5         \cf4 return\cf5  runningTotal
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 return\cf5  \cf11 incrementer
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 let\cf5  incrementbyTen = \cf11 makeIncrementer\cf5 (forIncrement:\cf7 10\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "The firstcall:"\cf5 , \cf9 incrementbyTen\cf5 ())
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "the second call"\cf5 ,\cf9 incrementbyTen\cf5 ())
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "The third call"\cf5 ,\cf9 incrementbyTen\cf5 ())
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 let\cf5  incrementbySeven = \cf11 makeIncrementer\cf5 (forIncrement:\cf7 7\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "The first call:"\cf5 ,\cf9 incrementbySeven\cf5 ())
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "The second call:"\cf5 ,\cf9 incrementbySeven\cf5 ())
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "The third call:"\cf5 ,\cf9 incrementbySeven\cf5 ())
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "The fourth call"\cf5 ,\cf9 incrementbyTen\cf5 ())
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //closures are references type
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 let\cf5  incrementBySevenAgain = \cf9 incrementbySeven
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Incrementby seven 3:"\cf5 ,\cf9 incrementBySevenAgain\cf5 ())
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //auto closures
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 var\cf5  errorList = [\cf7 404\cf5 ,\cf7 414\cf5 ,\cf7 402\cf5 ,\cf7 431\cf5 ,\cf7 455\cf5 ,\cf7 440\cf5 ]
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "TotalErrors:"\cf5 ,\cf9 errorList\cf5 .\cf10 count\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 let\cf5  debugger = \{ \cf9 errorList\cf5 .\cf8 remove\cf5 (at: \cf7 0\cf5 )\}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Total Errors:"\cf5 ,\cf9 errorList\cf5 .\cf10 count\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "now solving\cf5 \\\cf6 (\cf9 debugger\cf5 ()\cf6 )!"\cf5 )  \cf2 // remove the error from error list by a variable debugger
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Total Errors:"\cf5 ,\cf9 errorList\cf5 .\cf10 count\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Error List:"\cf5 ,\cf9 errorList\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //declaring a structure
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 struct\cf5  project\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  title =  \cf6 ""
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  hours = \cf7 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 func\cf5  display()\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5         \cf8 print\cf5 (\cf6 "Project Title:"\cf5 ,\cf9 title\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5         \cf8 print\cf5 (\cf6 "Total work hours required:"\cf5 ,\cf9 hours\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 var\cf5  LMSProject = \cf9 project\cf5 (title:\cf6 "Moodle"\cf5 ,hours :\cf7 200\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf9 LMSProject\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf9 LMSProject\cf5 .\cf11 display\cf5 ()  \cf2 // to display
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf9 LMSProject\cf5 .\cf9 hours\cf5  = \cf7 300
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf9 LMSProject\cf5 .\cf11 display\cf5 ()
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //class declaration
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 class\cf5  Manager \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  name : \cf10 String\cf5 =\cf6 ""
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  productowner : \cf10 Bool\cf5  = \cf4 true
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  currentProjects = \cf9 project\cf5 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //creating an instance of the class
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 let\cf5  mgrCanada = \cf9 Manager\cf5 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf9 mgrCanada\cf5 .\cf9 name\cf5  = \cf6 "jk"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf9 mgrCanada\cf5 .\cf9 productowner\cf5  = \cf4 true
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf9 mgrCanada\cf5 .\cf9 currentProjects\cf5  = \cf9 project\cf5 (title:\cf6 "Sales Reporting"\cf5 ,hours: \cf7 20\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "MGR CANADA NAME:"\cf5 ,\cf9 mgrCanada\cf5 .\cf9 name\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "mgrCanada product owner"\cf5 , \cf9 mgrCanada\cf5 .\cf9 productowner\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "mgrCanada current priogect title:"\cf5 , \cf9 mgrCanada\cf5 .\cf9 currentProjects\cf5 .\cf9 title\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "mgrCanada current priogect title:"\cf5 , \cf9 mgrCanada\cf5 .\cf9 currentProjects\cf5 .\cf9 hours\cf5 )
+\f1\fs24 \cf0 \
+\
+\
+
+\f0\fs22 \cf2 //structures are value types
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 struct\cf5  address\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  street = \cf6 "265 yorkland blvd"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  city = \cf6 "North York"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  postalCode = \cf6 "M1H1Y1"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 var\cf5  lambton = \cf9 address\cf5 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Lambton:"\cf5 ,\cf9 lambton\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 var\cf5  cestar = \cf9 lambton
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //let cestar lambton raise an error
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Cestar:"\cf5 ,\cf9 cestar\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Lambton:"\cf5 ,\cf9 lambton\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf9 cestar\cf5 .\cf9 street\cf5  = \cf6 "271 blvd"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "Cestar:"\cf5 ,\cf9 cestar\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 // classes are Reference types
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 class\cf5  Institute\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  street = \cf6 "265 BLVD"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  city = \cf6 "North York"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  postalCode = \cf6 "M1H1V1W2"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 var\cf5  myLambton = \cf9 Institute\cf5 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 var\cf5  myCestar = \cf9 myLambton
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "mylambton street:"\cf5 , \cf9 myLambton\cf5 .\cf9 street\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "my Cestar:"\cf5 , \cf9 myCestar\cf5 .\cf9 street\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "myCestarcity:"\cf5 , \cf9 myCestar\cf5 .\cf9 city\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "myCestar postalCode:"\cf5 ,\cf9 myCestar\cf5 .\cf9 postalCode\cf5 )
+\f1\fs24 \cf0 \
+\
+\
+
+\f0\fs22 \cf9 myCestar\cf5 .\cf9 street\cf5 =\cf6 "271 Blvd"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf9 myCestar\cf5 .\cf9 postalCode\cf5 =\cf6 "M3H3Y3"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "MYcESTAR STREET :"\cf5 ,\cf9 myCestar\cf5 .\cf9 street\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "myCestar postal code"\cf5  , \cf9 myCestar\cf5 .\cf9 postalCode\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "myLambton street:"\cf5 ,\cf9 myLambton\cf5 .\cf9 street\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "myLambton postalCode:"\cf5 , \cf9 myLambton\cf5 .\cf9 postalCode\cf5 )
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 struct\cf5  address1\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  sreetname = \cf6 "75 silversprings"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  postalCode = \cf6 "M1H1W2"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  city = \cf6 "Toronto"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 class\cf5  PersonDetails
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5 \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  Firstname = \cf6 "Charles "
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  Lastname = \cf6 " "
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \cf4 var\cf5  age = \cf7 20
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5    \cf4 var\cf5  loc = \cf9 address1\cf5 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 var\cf5  c = \cf9 PersonDetails\cf5 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "the firstname:"\cf5 ,\cf9 c\cf5 .\cf9 Firstname\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 "the lastname:"\cf5 ,\cf9 c\cf5 .\cf9 Lastname\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print\cf5 (\cf6 " age:"\cf5 ,\cf9 c\cf5 .\cf9 age\cf5 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 print
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf5     
+\f1\fs24 \cf0 \
+\
+\
+}
